@@ -82,7 +82,7 @@ static NSString * const reuseIdentifier = @"cell";
         if (indexPath.section == 1) {
         label.text = @"Persons";
         }else
-        label.text = @"Nature";
+        label.text = @"Nature"; 
         
         label.textColor = [UIColor redColor];
         [headerView addSubview:label];
