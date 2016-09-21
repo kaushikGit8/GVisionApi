@@ -41,6 +41,7 @@ static NSString * const reuseIdentifier = @"cell";
 
 #pragma mark <UICollectionViewDataSource>
 
+
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 2;
 }
@@ -68,6 +69,38 @@ static NSString * const reuseIdentifier = @"cell";
     }
     
     return cell;
+}
+
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionReusableView *reusableview = nil;
+    
+    if (kind == UICollectionElementKindSectionHeader) {
+        UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 50)];
+        if (indexPath.section == 1) {
+        label.text = @"Persons";
+        }else
+        label.text = @"Nature";
+        
+        label.textColor = [UIColor redColor];
+        [headerView addSubview:label];
+        headerView.backgroundColor = [UIColor yellowColor];
+        reusableview = headerView;
+    }
+    
+//    if (kind == UICollectionElementKindSectionFooter) {
+//        UICollectionReusableView *footerview = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"FooterView" forIndexPath:indexPath];
+//        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 50)];
+//        label.text = @"Footer";
+//        label.textColor = [UIColor redColor];
+//        [footerview addSubview:label];
+//        footerview.backgroundColor = [UIColor yellowColor];
+//        reusableview = footerview;
+//    }
+    
+    return reusableview;
 }
 
 #pragma mark <UICollectionViewDelegate>
