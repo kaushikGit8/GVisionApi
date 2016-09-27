@@ -7,6 +7,7 @@
 //
 
 #import "ImageModel.h"
+#import <UIKit/UIKit.h>
 
 @implementation ImageModel
 
@@ -27,6 +28,8 @@
         
         self.faces = [NSMutableArray new];
         self.nature = [NSMutableArray new];
+        UIImage *image = [UIImage imageNamed:@"demo-image"];
+        [self.nature addObject:image];
     }
     
     return self;

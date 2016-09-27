@@ -19,5 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 @property (weak, nonatomic) IBOutlet UITextView *labelResults;
 @property (weak, nonatomic) IBOutlet UITextView *faceResults;
+@property (strong, nonatomic) NSString *binaryImageData;
+@property (strong, nonatomic) UIImage *image;
 @end
 

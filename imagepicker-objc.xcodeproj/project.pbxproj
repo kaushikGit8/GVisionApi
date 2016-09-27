@@ -15,6 +15,7 @@
 		1B1684561C3B164200220B6E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B1684541C3B164200220B6E /* LaunchScreen.storyboard */; };
 		1B1684611C3B164200220B6E /* imagepicker_objcTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B1684601C3B164200220B6E /* imagepicker_objcTests.m */; };
 		1B16846C1C3B164200220B6E /* imagepicker_objcUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B16846B1C3B164200220B6E /* imagepicker_objcUITests.m */; };
+		D416D9C41D9A7C0100AAA666 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D416D9C31D9A7C0100AAA666 /* MainViewController.m */; };
 		D48B194C1D925CC300F90734 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D48B194B1D925CC300F90734 /* DetailViewController.m */; };
 		D48B194F1D9263D800F90734 /* ImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D48B194E1D9263D800F90734 /* ImageModel.m */; };
 		D48B19521D926A9100F90734 /* MyCellCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D48B19511D926A9100F90734 /* MyCellCollectionViewCell.m */; };
@@ -54,6 +55,8 @@
 		1B1684671C3B164200220B6E /* imagepicker-objcUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "imagepicker-objcUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B16846B1C3B164200220B6E /* imagepicker_objcUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = imagepicker_objcUITests.m; sourceTree = "<group>"; };
 		1B16846D1C3B164200220B6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D416D9C21D9A7C0100AAA666 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		D416D9C31D9A7C0100AAA666 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		D48B194A1D925CC300F90734 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		D48B194B1D925CC300F90734 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		D48B194D1D9263D800F90734 /* ImageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageModel.h; sourceTree = "<group>"; };
@@ -116,6 +119,8 @@
 				1B16844C1C3B164200220B6E /* ImagePickerViewController.h */,
 				1B16844D1C3B164200220B6E /* ImagePickerViewController.m */,
 				1B16844F1C3B164200220B6E /* Main.storyboard */,
+				D416D9C21D9A7C0100AAA666 /* MainViewController.h */,
+				D416D9C31D9A7C0100AAA666 /* MainViewController.m */,
 				D48B19501D926A9100F90734 /* MyCellCollectionViewCell.h */,
 				D48B19511D926A9100F90734 /* MyCellCollectionViewCell.m */,
 				D48B194A1D925CC300F90734 /* DetailViewController.h */,
@@ -298,6 +303,7 @@
 				1B16844E1C3B164200220B6E /* ImagePickerViewController.m in Sources */,
 				1B16844B1C3B164200220B6E /* AppDelegate.m in Sources */,
 				1B1684481C3B164200220B6E /* main.m in Sources */,
+				D416D9C41D9A7C0100AAA666 /* MainViewController.m in Sources */,
 				D48B19521D926A9100F90734 /* MyCellCollectionViewCell.m in Sources */,
 				D48B194C1D925CC300F90734 /* DetailViewController.m in Sources */,
 			);

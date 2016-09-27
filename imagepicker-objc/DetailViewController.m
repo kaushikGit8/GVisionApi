@@ -28,20 +28,21 @@ static NSString * const reuseIdentifier = @"cell";
     
     // Do any additional setup after loading the view.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (IBAction)swipeGesture:(UISwipeGestureRecognizer *)sender {
+    
+    if (sender.direction == UISwipeGestureRecognizerDirectionRight) {
+         [self.navigationController popViewControllerAnimated:YES];
+    }
+   
+     NSLog(@"Swipe detail");
 }
-*/
 
+- (IBAction)tapGesture:(UITapGestureRecognizer *)sender {
+    
+    
+    NSLog(@"Tap detail");
+}
 #pragma mark <UICollectionViewDataSource>
-
-
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 2;
 }
@@ -61,11 +62,11 @@ static NSString * const reuseIdentifier = @"cell";
     
         cell.imageView.image =  (UIImage*)[[ImageModel sharedInstance].faces objectAtIndex:indexPath.row];
         //[cell.contentView addSubview:[[UIImageView alloc] initWithImage:[[ImageModel sharedInstance].faces objectAtIndex:indexPath.row]]];
-       cell.contentView.backgroundColor = [UIColor grayColor];
+       cell.contentView.backgroundColor = [UIColor clearColor];
     }else {
         cell.imageView.image =  (UIImage*)[[ImageModel sharedInstance].nature objectAtIndex:indexPath.row];
          //[cell.contentView addSubview:[[UIImageView alloc] initWithImage:[[ImageModel sharedInstance].nature objectAtIndex:indexPath.row]]];
-       cell.contentView.backgroundColor = [UIColor brownColor]; 
+       cell.contentView.backgroundColor = [UIColor clearColor];
     }
     
     return cell;
@@ -80,13 +81,13 @@ static NSString * const reuseIdentifier = @"cell";
         UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 50)];
         if (indexPath.section == 1) {
-        label.text = @"Persons";
+        label.text = @"  Persons :";
         }else
-        label.text = @"Nature"; 
+        label.text = @"  Nature :";
         
-        label.textColor = [UIColor redColor];
+        label.textColor = [UIColor grayColor];
         [headerView addSubview:label];
-        headerView.backgroundColor = [UIColor yellowColor];
+        headerView.backgroundColor = [UIColor clearColor];
         reusableview = headerView;
     }
     

@@ -13,6 +13,7 @@
 // limitations under the License.
 
 #import "AppDelegate.h"
+#import "ImageModel.h"
 
 @interface AppDelegate ()
 
@@ -24,6 +25,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    [ImageModel sharedInstance];
     /*NSString *__block make = @"Honda";
     NSString *(^getFull)(NSString*)=^(NSString *model){
         make = @"Wa";

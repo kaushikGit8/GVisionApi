@@ -16,10 +16,10 @@
 #import "ImageModel.h"
 
 @interface ImagePickerViewController ()
-@property (nonatomic,strong) UIImage *image;
 @end
 
 @implementation ImagePickerViewController
+
 - (IBAction)loadImageButtonTapped:(UIButton *)sender {
     UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
     imagePicker.delegate = self;
@@ -99,6 +99,8 @@
     NSData *requestData = [NSJSONSerialization dataWithJSONObject:paramsDictionary options:0 error:&error];
     [request setHTTPBody: requestData];
 
+    [self.spinner startAnimating];
+    self.labelResults.text = @"Analyzing the image, please wait...";
     // Run the request on a background thread
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [self runRequestOnBackgroundThread: request];
@@ -173,16 +175,16 @@
                     NSString *percentString = [[NSString alloc] initWithFormat:@"%2.0f%%",(likelihoodPercent*100)];
                     NSString *emotionPercentString = [NSString stringWithFormat:@"%@%@%@%@", emotion, @": ", percentString, @"\r\n"];
                     self.faceResults.text = [self.faceResults.text stringByAppendingString:emotionPercentString];
+                    self.faceResults.text = [self.faceResults.text stringByAppendingString:@"\nSwipe left to open Gallery"];
                 }
                 
                 if (_imageView)
                 [[ImageModel sharedInstance].faces addObject:_image];
                 
             } else {
-                self.faceResults.text = @"No faces found";
-                [self showAlertWithMsg:@"No faces found"];
-                if (_imageView)
-                [[ImageModel sharedInstance].nature addObject:_image];
+                self.faceResults.text = @"No faces found. \nSwipe left to open Gallery";
+                //[self showAlertWithMsg:@"No faces found"];
+                
             }
             
             // Get label annotations
@@ -190,7 +192,7 @@
             NSInteger numLabels = [labelAnnotations count];
             NSMutableArray *labels = [[NSMutableArray alloc] init];
             if (numLabels > 0) {
-                NSString *labelResultsText = @"Labels found: ";
+                NSString *labelResultsText = @"Labels found : ";
                 for (NSDictionary *label in labelAnnotations) {
                     NSString *labelString = [label objectForKey:@"description"];
                     [labels addObject:labelString];
@@ -205,6 +207,12 @@
                     }
                 }
                 self.labelResults.text = labelResultsText;
+                if ([labelResultsText containsString:@"waterfall"] || [labelResultsText containsString:@"lake"] || [labelResultsText containsString:@"tree"]) {
+                    if (_imageView)
+                        [[ImageModel sharedInstance].nature addObject:_image];
+                }
+               
+                
             } else {
                 self.labelResults.text = @"No labels found";
             }
@@ -235,13 +243,27 @@
     [alert addAction:cancel];
     [self presentViewController:alert animated:YES completion:nil];
 }
+- (IBAction)leftGesture:(id)sender {
+    
+    if ([self.faceResults.text containsString:@"Gallery"])
+    [self performSegueWithIdentifier:@"gallery" sender:self];
+    
+}
+- (IBAction)rightGesture:(id)sender {
+    
+    [self.navigationController popViewControllerAnimated:YES];
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    self.faceResults.hidden = true;
-    self.labelResults.hidden = true;
+    //self.faceResults.hidden = true;
+    //self.labelResults.hidden = true;
     self.spinner.hidesWhenStopped = true;
+    
+    if (_binaryImageData)
+        [self createRequest:_binaryImageData];
 }
 
 @end
