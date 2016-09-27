@@ -24,7 +24,7 @@
     UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
     imagePicker.delegate = self;
     imagePicker.allowsEditing = false;
-    imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    imagePicker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
     
     [self presentViewController:imagePicker animated:true completion:NULL];
     
@@ -210,6 +210,9 @@
                 if ([labelResultsText containsString:@"waterfall"] || [labelResultsText containsString:@"lake"] || [labelResultsText containsString:@"tree"]) {
                     if (_imageView)
                         [[ImageModel sharedInstance].nature addObject:_image];
+                }else{
+                    if (_imageView)
+                        [[ImageModel sharedInstance].others addObject:_image];
                 }
                
                 

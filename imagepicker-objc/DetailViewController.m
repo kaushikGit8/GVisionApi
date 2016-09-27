@@ -44,14 +44,18 @@ static NSString * const reuseIdentifier = @"cell";
 }
 #pragma mark <UICollectionViewDataSource>
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 2;
+    return 3;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     if (section == 1) {
         return  [ImageModel sharedInstance].faces.count;
-    }else
+    }else if (section == 2){
         return  [ImageModel sharedInstance].nature.count;
+    }else if (section == 3){
+         return  [ImageModel sharedInstance].others.count;
+    }
+    return  0;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -63,10 +67,15 @@ static NSString * const reuseIdentifier = @"cell";
         cell.imageView.image =  (UIImage*)[[ImageModel sharedInstance].faces objectAtIndex:indexPath.row];
         //[cell.contentView addSubview:[[UIImageView alloc] initWithImage:[[ImageModel sharedInstance].faces objectAtIndex:indexPath.row]]];
        cell.contentView.backgroundColor = [UIColor clearColor];
-    }else {
+    }else  if (indexPath.section == 2) {
         cell.imageView.image =  (UIImage*)[[ImageModel sharedInstance].nature objectAtIndex:indexPath.row];
          //[cell.contentView addSubview:[[UIImageView alloc] initWithImage:[[ImageModel sharedInstance].nature objectAtIndex:indexPath.row]]];
        cell.contentView.backgroundColor = [UIColor clearColor];
+    }
+    else  if (indexPath.section == 3) {
+        cell.imageView.image =  (UIImage*)[[ImageModel sharedInstance].others objectAtIndex:indexPath.row];
+        //[cell.contentView addSubview:[[UIImageView alloc] initWithImage:[[ImageModel sharedInstance].nature objectAtIndex:indexPath.row]]];
+        cell.contentView.backgroundColor = [UIColor clearColor];
     }
     
     return cell;
@@ -82,8 +91,11 @@ static NSString * const reuseIdentifier = @"cell";
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 50)];
         if (indexPath.section == 1) {
         label.text = @"  Persons :";
-        }else
-        label.text = @"  Nature :";
+        }else if (indexPath.section == 2){
+            label.text = @"  Nature :";
+        }else if(indexPath.section == 3){
+            label.text = @"  Others :";
+        }
         
         label.textColor = [UIColor grayColor];
         [headerView addSubview:label];

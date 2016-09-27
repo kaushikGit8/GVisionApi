@@ -12,6 +12,7 @@
 
 @property (nonatomic,strong) NSMutableArray *faces;
 @property (nonatomic,strong) NSMutableArray *nature;
+@property (nonatomic,strong) NSMutableArray *others;
 
 + (instancetype)sharedInstance;
 

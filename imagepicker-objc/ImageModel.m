@@ -28,6 +28,7 @@
         
         self.faces = [NSMutableArray new];
         self.nature = [NSMutableArray new];
+        self.others = [NSMutableArray new];
         UIImage *image = [UIImage imageNamed:@"demo-image"];
         [self.nature addObject:image];
     }
