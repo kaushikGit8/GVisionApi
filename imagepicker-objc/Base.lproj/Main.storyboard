@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="L5o-lF-hLz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="L5o-lF-hLz">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -51,7 +51,7 @@
                             <constraint firstItem="gsl-IP-xdD" firstAttribute="trailing" secondItem="fpo-yh-4NM" secondAttribute="trailing" id="QDm-8x-olb"/>
                             <constraint firstItem="gsl-IP-xdD" firstAttribute="centerX" secondItem="NmY-y2-By2" secondAttribute="centerX" id="Tzk-Zo-tff"/>
                             <constraint firstItem="TUx-as-Jf3" firstAttribute="centerX" secondItem="NmY-y2-By2" secondAttribute="centerX" id="YWh-7u-b2Y"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="fpo-yh-4NM" secondAttribute="bottom" constant="189" id="kM2-LZ-zeK"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="fpo-yh-4NM" secondAttribute="bottom" constant="20" id="kM2-LZ-zeK"/>
                             <constraint firstItem="gsl-IP-xdD" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="rKo-nl-lvR"/>
                         </constraints>
                         <connections>
@@ -80,7 +80,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="770" y="247"/>
+            <point key="canvasLocation" x="768.79999999999995" y="246.9265367316342"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="TW3-pK-iux">
@@ -111,11 +111,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="lSP-QC-ygU" firstAttribute="trailing" secondItem="Jg3-Ca-jxK" secondAttribute="trailing" id="0lU-H7-dQe"/>
-                            <constraint firstItem="lSP-QC-ygU" firstAttribute="leading" secondItem="Jg3-Ca-jxK" secondAttribute="leading" id="1gO-jq-ofZ"/>
-                            <constraint firstItem="KaO-fp-SEF" firstAttribute="top" secondItem="Jg3-Ca-jxK" secondAttribute="bottom" constant="363" id="6uH-C3-n4E"/>
+                            <constraint firstItem="Jg3-Ca-jxK" firstAttribute="top" secondItem="lSP-QC-ygU" secondAttribute="bottom" constant="73" id="2rm-4c-grb"/>
                             <constraint firstItem="lSP-QC-ygU" firstAttribute="top" secondItem="4L2-5K-ryg" secondAttribute="bottom" constant="66" id="IPs-h9-O7u"/>
-                            <constraint firstItem="Jg3-Ca-jxK" firstAttribute="top" secondItem="lSP-QC-ygU" secondAttribute="bottom" constant="74" id="dGt-3K-nM4"/>
+                            <constraint firstItem="Jg3-Ca-jxK" firstAttribute="centerX" secondItem="Qa4-9k-paG" secondAttribute="centerX" id="TTW-C8-XJ1"/>
                             <constraint firstItem="lSP-QC-ygU" firstAttribute="centerX" secondItem="Qa4-9k-paG" secondAttribute="centerX" id="hhH-UJ-vkk"/>
                         </constraints>
                         <connections>
@@ -147,7 +145,7 @@
         <scene sceneID="8zo-jl-jdv">
             <objects>
                 <collectionViewController id="ILL-IW-QLo" customClass="DetailViewController" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="9ss-3D-c9G">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="9ss-3D-c9G">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -217,6 +215,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="LBg-bL-2J3"/>
+        <segue reference="Tiv-rd-Y2U"/>
     </inferredMetricsTieBreakers>
 </document>

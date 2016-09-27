@@ -175,9 +175,9 @@
                     NSString *percentString = [[NSString alloc] initWithFormat:@"%2.0f%%",(likelihoodPercent*100)];
                     NSString *emotionPercentString = [NSString stringWithFormat:@"%@%@%@%@", emotion, @": ", percentString, @"\r\n"];
                     self.faceResults.text = [self.faceResults.text stringByAppendingString:emotionPercentString];
-                    self.faceResults.text = [self.faceResults.text stringByAppendingString:@"\nSwipe left to open Gallery"];
+                    
                 }
-                
+                self.faceResults.text = [self.faceResults.text stringByAppendingString:@"\nSwipe left to open Gallery"];
                 if (_imageView)
                 [[ImageModel sharedInstance].faces addObject:_image];
                 
