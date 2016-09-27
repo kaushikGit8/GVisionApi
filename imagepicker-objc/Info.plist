@@ -44,6 +44,8 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Need to use Photos</string>
+	<string>Enable Photos access to import photos from your library.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Enable iSee to take photos.</string>
 </dict>
 </plist>

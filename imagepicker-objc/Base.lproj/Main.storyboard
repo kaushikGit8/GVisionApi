@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="L5o-lF-hLz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11163.2" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="L5o-lF-hLz">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11133"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,41 +18,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TUx-as-Jf3">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="205" id="40n-6q-MIR"/>
-                                    <constraint firstAttribute="width" constant="241" id="qRu-Iu-Nhm"/>
-                                </constraints>
-                            </imageView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="NmY-y2-By2"/>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="gsl-IP-xdD">
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="141" id="qti-tH-2y1"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fpo-yh-4NM">
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="NmY-y2-By2">
+                                <frame key="frameInset" minX="169" minY="317" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="9Ie-ec-roh">
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="gsl-IP-xdD" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="4a6-sq-pmd"/>
-                            <constraint firstItem="TUx-as-Jf3" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="23" id="Bf1-XY-yJ2"/>
-                            <constraint firstItem="NmY-y2-By2" firstAttribute="top" secondItem="gsl-IP-xdD" secondAttribute="bottom" constant="4" id="Cgv-mT-EyS"/>
-                            <constraint firstItem="fpo-yh-4NM" firstAttribute="leading" secondItem="gsl-IP-xdD" secondAttribute="leading" id="E86-Ed-27N"/>
-                            <constraint firstAttribute="trailing" secondItem="gsl-IP-xdD" secondAttribute="trailing" id="G2T-6n-Rkd"/>
-                            <constraint firstItem="fpo-yh-4NM" firstAttribute="top" secondItem="NmY-y2-By2" secondAttribute="bottom" constant="15" id="Jyw-0f-qqL"/>
-                            <constraint firstItem="gsl-IP-xdD" firstAttribute="trailing" secondItem="fpo-yh-4NM" secondAttribute="trailing" id="QDm-8x-olb"/>
-                            <constraint firstItem="gsl-IP-xdD" firstAttribute="centerX" secondItem="NmY-y2-By2" secondAttribute="centerX" id="Tzk-Zo-tff"/>
-                            <constraint firstItem="TUx-as-Jf3" firstAttribute="centerX" secondItem="NmY-y2-By2" secondAttribute="centerX" id="YWh-7u-b2Y"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="fpo-yh-4NM" secondAttribute="bottom" constant="20" id="kM2-LZ-zeK"/>
-                            <constraint firstItem="gsl-IP-xdD" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="rKo-nl-lvR"/>
+                            <constraint firstItem="9Ie-ec-roh" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="8" id="9s1-0A-SoV"/>
+                            <constraint firstAttribute="trailing" secondItem="9Ie-ec-roh" secondAttribute="trailing" constant="8" id="XQL-t5-hAO"/>
+                            <constraint firstItem="9Ie-ec-roh" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="32" id="bTX-ad-AYy"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="9Ie-ec-roh" secondAttribute="bottom" constant="25" id="hEH-Xl-zjY"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="Bma-fk-VVO" appends="YES" id="whU-Iu-6Qi"/>
@@ -61,9 +44,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="euw-ke-8cT"/>
                     <connections>
-                        <outlet property="faceResults" destination="fpo-yh-4NM" id="n5o-UC-kwZ"/>
-                        <outlet property="imageView" destination="TUx-as-Jf3" id="TSr-A1-ixM"/>
-                        <outlet property="labelResults" destination="gsl-IP-xdD" id="DIj-2Z-SRY"/>
+                        <outlet property="combineResult" destination="9Ie-ec-roh" id="P8r-HH-vA4"/>
                         <outlet property="spinner" destination="NmY-y2-By2" id="nvz-EB-8Vg"/>
                         <segue destination="ILL-IW-QLo" kind="push" identifier="gallery" id="Tiv-rd-Y2U"/>
                     </connections>
@@ -98,17 +79,17 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="mbV-f2-Fgm"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe left to open Gallery" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jg3-Ca-jxK">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="Jg3-Ca-jxK" firstAttribute="top" secondItem="lSP-QC-ygU" secondAttribute="bottom" constant="73" id="2rm-4c-grb"/>
@@ -123,6 +104,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="8bv-4O-t4d"/>
                     <connections>
+                        <outlet property="swipeToGallery" destination="Jg3-Ca-jxK" id="s6s-Sy-j4M"/>
+                        <outlet property="tapToTakeImage" destination="lSP-QC-ygU" id="kci-jp-obv"/>
                         <segue destination="BYZ-38-t0r" kind="push" identifier="capture" id="EEl-J7-XQ0"/>
                         <segue destination="ILL-IW-QLo" kind="push" identifier="detail" id="LBg-bL-2J3"/>
                     </connections>
@@ -157,7 +140,7 @@
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="kNu-Ea-sNe" customClass="MyCellCollectionViewCell">
-                                <rect key="frame" x="0.0" y="70" width="80" height="80"/>
+                                <frame key="frameInset" minY="134" width="80" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
@@ -178,7 +161,7 @@
                             </collectionViewCell>
                         </cells>
                         <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HeaderView" id="cVm-j9-T1d">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                            <frame key="frameInset" minY="64" width="375" height="50"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </collectionReusableView>
                         <connections>

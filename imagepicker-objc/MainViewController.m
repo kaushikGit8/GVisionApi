@@ -9,8 +9,12 @@
 #import "MainViewController.h"
 #import "ImagePickerViewController.h"
 #import "DetailViewController.h"
+#import "TGCameraViewController.h"
+#import "QHSpeechSynthesizerQueue.h"
 
-@interface MainViewController ()
+@interface MainViewController ()<TGCameraDelegate>
+@property (weak, nonatomic) IBOutlet UILabel *tapToTakeImage;
+@property (weak, nonatomic) IBOutlet UILabel *swipeToGallery;
 
 @end
 
@@ -18,12 +22,24 @@
 
     NSString *binaryImageData;
     UIImage *pickedImage;
-
+    QHSpeechSynthesizerQueue *synthesizerQueue;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    //Text to Speech
+    synthesizerQueue = [[QHSpeechSynthesizerQueue alloc] init];
+    synthesizerQueue.duckOthers = YES;
+    synthesizerQueue.preDelay = 1.0;
+    synthesizerQueue.postDelay = 1.0;
+    [synthesizerQueue readImmediately:_tapToTakeImage.text withLanguage:@"en_US" andRate:0.5 andClearQueue:NO];
+    [synthesizerQueue readNext:_swipeToGallery.text withLanguage:@"en_US" andRate:0.5 andClearQueue:YES];
+    
+    // Setting Camera properties
+    [TGCamera setOption:kTGCameraOptionHiddenFilterButton value:[NSNumber numberWithBool:YES]];
+    [TGCamera setOption:kTGCameraOptionSaveImageToAlbum value:[NSNumber numberWithBool:YES]];
+    [TGCamera setOption:kTGCameraOptionHiddenToggleButton value:[NSNumber numberWithBool:YES]];
 }
 
 - (IBAction)swipeGesture:(UISwipeGestureRecognizer *)sender {
@@ -43,12 +59,11 @@
     {
         NSLog(@"Tap Gesture.. ");
         
-        UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
-        imagePicker.delegate = self;
-        imagePicker.allowsEditing = false;
-        imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-
-        [self presentViewController:imagePicker animated:true completion:NULL];
+        TGCameraNavigationController *navigationController =
+        [TGCameraNavigationController newWithCameraDelegate:self];
+        
+        [self presentViewController:navigationController animated:YES completion:nil];
+        
     }
     
 }
@@ -97,5 +112,29 @@
     return base64String;
 }
 
+#pragma mark - TGCameraDelegate required
+
+- (void)cameraDidCancel
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)cameraDidTakePhoto:(UIImage *)image
+{
+    UIImage *pickedImageData = image;//info[UIImagePickerControllerOriginalImage];
+    pickedImage = pickedImageData;
+    // Base64 encode the image and create the request
+    binaryImageData = [self base64EncodeImage:pickedImage];
+    //[imagePicker dismissViewControllerAnimated:true completion:NULL];
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [self performSegueWithIdentifier:@"capture" sender:self];
+
+}
+
+- (void)cameraDidSelectAlbumPhoto:(UIImage *)image
+{
+    //_photoView.image = image;
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 @end

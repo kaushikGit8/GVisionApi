@@ -14,8 +14,11 @@
 
 #import "ImagePickerViewController.h"
 #import "ImageModel.h"
+#import "QHSpeechSynthesizerQueue.h"
 
-@interface ImagePickerViewController ()
+@interface ImagePickerViewController (){
+    QHSpeechSynthesizerQueue *synthesizerQueue;
+}
 @end
 
 @implementation ImagePickerViewController
@@ -93,14 +96,17 @@
                 @{@"type":@"LABEL_DETECTION",
                   @"maxResults":@10},
                 @{@"type":@"FACE_DETECTION",
-                  @"maxResults":@10}]}]};
+                  @"maxResults":@10},
+                @{@"type":@"TEXT_DETECTION",
+                  @"maxResults":@2}]}]};//TEXT_DETECTION
     
     NSError *error;
     NSData *requestData = [NSJSONSerialization dataWithJSONObject:paramsDictionary options:0 error:&error];
     [request setHTTPBody: requestData];
 
     [self.spinner startAnimating];
-    self.labelResults.text = @"Analyzing the image, please wait...";
+    self.combineResult.text = @"Analyzing the image, please wait...";
+    [synthesizerQueue readNext:self.combineResult.text withLanguage:@"en_US" andRate:0.5 andClearQueue:YES];
     // Run the request on a background thread
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [self runRequestOnBackgroundThread: request];
@@ -128,9 +134,10 @@
         NSDictionary *errorObj = [json objectForKey:@"error"];
         
         [self.spinner stopAnimating];
-        self.imageView.hidden = true;
-        self.labelResults.hidden = false;
-        self.faceResults.hidden = false;
+        
+        self.labelResults.hidden = true;
+        self.faceResults.hidden = true;
+        NSString *combinedString = [NSString new];
         
         // Check for errors
         if (errorObj) {
@@ -138,61 +145,31 @@
             NSString *errorCode = [errorObj[@"code"] stringValue];
             NSString *errorString2 = @": ";
             NSString *errorMsg = errorObj[@"message"];
-            self.labelResults.text = [NSString stringWithFormat:@"%@%@%@%@", errorString1, errorCode, errorString2, errorMsg];
+            self.combineResult.text = [NSString stringWithFormat:@"%@%@%@%@", errorString1, errorCode, errorString2, errorMsg];
             
             
         } else {
-            // Get face annotations
-            NSDictionary *faceAnnotations = [responseData objectForKey:@"faceAnnotations"];
-            if (faceAnnotations != NULL) {
-                // Get number of faces detected
-                NSInteger numPeopleDetected = [faceAnnotations count];
-                NSString *peopleStr = [NSString stringWithFormat:@"%lu", (unsigned long)numPeopleDetected];
-                NSString *faceStr1 = @"People detected: ";
-                NSString *faceStr2 = @"\n\nEmotions detected:\n";
-                self.faceResults.text = [NSString stringWithFormat:@"%@%@%@", faceStr1, peopleStr, faceStr2];
-                
-                NSArray *emotions = @[@"joy", @"sorrow", @"surprise", @"anger"];
-                NSMutableDictionary *emotionTotals = [NSMutableDictionary dictionaryWithObjects:@[@0.0,@0.0,@0.0,@0.0]forKeys:@[@"sorrow",@"joy",@"surprise",@"anger"]];
-                NSDictionary *emotionLikelihoods = @{@"VERY_LIKELY": @0.9, @"LIKELY": @0.75, @"POSSIBLE": @0.5, @"UNLIKELY": @0.25, @"VERY_UNLIKELY": @0.0};
-                
-                // Sum all detected emotions
-                for (NSDictionary *personData in faceAnnotations) {
-                    for (NSString *emotion in emotions) {
-                        NSString *lookup = [emotion stringByAppendingString:@"Likelihood"];
-                        NSString *result = [personData objectForKey:lookup];
-                        double newValue = [emotionLikelihoods[result] doubleValue] + [emotionTotals[emotion] doubleValue];
-                        NSNumber *tempNumber = [[NSNumber alloc] initWithDouble:newValue];
-                        [emotionTotals setValue:tempNumber forKey:emotion];
-                    }
-                }
-                
-                // Get emotion likelihood as a % and display it in the UI
-                for (NSString *emotion in emotionTotals) {
-                    double emotionSum = [emotionTotals[emotion] doubleValue];
-                    double totalPeople = [faceAnnotations count];
-                    double likelihoodPercent = emotionSum / totalPeople;
-                    NSString *percentString = [[NSString alloc] initWithFormat:@"%2.0f%%",(likelihoodPercent*100)];
-                    NSString *emotionPercentString = [NSString stringWithFormat:@"%@%@%@%@", emotion, @": ", percentString, @"\r\n"];
-                    self.faceResults.text = [self.faceResults.text stringByAppendingString:emotionPercentString];
-                    
-                }
-                self.faceResults.text = [self.faceResults.text stringByAppendingString:@"\nSwipe left to open Gallery"];
-                if (_imageView)
-                [[ImageModel sharedInstance].faces addObject:_image];
-                
-            } else {
-                self.faceResults.text = @"No faces found. \nSwipe left to open Gallery";
-                //[self showAlertWithMsg:@"No faces found"];
-                
+            
+            //Get Text annoatations
+            NSArray *textAnnotations = [responseData objectForKey:@"textAnnotations"];
+            NSInteger numTextLabels = [textAnnotations count];
+            NSString *textAnalysis =  [NSString new];
+            if(numTextLabels > 0){
+                NSString *prominentText = [[textAnnotations objectAtIndex:0] objectForKey:@"description"];
+                textAnalysis = [NSString stringWithFormat:@"This image contains following text : \n%@\n\n",prominentText];
+            }else{
+                //No Text found
+                textAnalysis = @"No text present in the image \n\n";
             }
+
             
             // Get label annotations
             NSDictionary *labelAnnotations = [responseData objectForKey:@"labelAnnotations"];
             NSInteger numLabels = [labelAnnotations count];
             NSMutableArray *labels = [[NSMutableArray alloc] init];
+            NSString *labelResultsText = [NSString new];
             if (numLabels > 0) {
-                NSString *labelResultsText = @"Labels found : ";
+                labelResultsText = @"This image may contain : ";
                 for (NSDictionary *label in labelAnnotations) {
                     NSString *labelString = [label objectForKey:@"description"];
                     [labels addObject:labelString];
@@ -206,7 +183,7 @@
                         labelResultsText = [labelResultsText stringByAppendingString:label];
                     }
                 }
-                self.labelResults.text = labelResultsText;
+                //self.labelResults.text = labelResultsText;
                 if ([labelResultsText containsString:@"waterfall"] || [labelResultsText containsString:@"lake"] || [labelResultsText containsString:@"tree"]) {
                     if (_imageView)
                         [[ImageModel sharedInstance].nature addObject:_image];
@@ -214,12 +191,63 @@
                     if (_imageView)
                         [[ImageModel sharedInstance].others addObject:_image];
                 }
-               
+                
                 
             } else {
-                self.labelResults.text = @"No labels found";
+                self.labelResults.text = @"No Tags found\n\n";
             }
+
+            
+            // Get face annotations
+            NSDictionary *faceAnnotations = [responseData objectForKey:@"faceAnnotations"];
+            NSString *facialAnalysisString = [NSString new];
+            if (faceAnnotations != NULL) {
+                // Get number of faces detected
+                NSInteger numPeopleDetected = [faceAnnotations count];
+                NSString *peopleStr = [NSString stringWithFormat:@"%lu", (unsigned long)numPeopleDetected];
+                NSString *faceStr1 = @"\n\nPeople detected: ";
+//                NSString *faceStr2 = @"\n\nEmotions detected:\n";
+                facialAnalysisString = [NSString stringWithFormat:@"%@%@", faceStr1, peopleStr];
+                
+//                NSArray *emotions = @[@"joy", @"sorrow", @"surprise", @"anger"];
+//                NSMutableDictionary *emotionTotals = [NSMutableDictionary dictionaryWithObjects:@[@0.0,@0.0,@0.0,@0.0]forKeys:@[@"sorrow",@"joy",@"surprise",@"anger"]];
+//                NSDictionary *emotionLikelihoods = @{@"VERY_LIKELY": @0.9, @"LIKELY": @0.75, @"POSSIBLE": @0.5, @"UNLIKELY": @0.25, @"VERY_UNLIKELY": @0.0};
+//                
+//                // Sum all detected emotions
+//                for (NSDictionary *personData in faceAnnotations) {
+//                    for (NSString *emotion in emotions) {
+//                        NSString *lookup = [emotion stringByAppendingString:@"Likelihood"];
+//                        NSString *result = [personData objectForKey:lookup];
+//                        double newValue = [emotionLikelihoods[result] doubleValue] + [emotionTotals[emotion] doubleValue];
+//                        NSNumber *tempNumber = [[NSNumber alloc] initWithDouble:newValue];
+//                        [emotionTotals setValue:tempNumber forKey:emotion];
+//                    }
+//                }
+//                
+//                // Get emotion likelihood as a % and display it in the UI
+//                for (NSString *emotion in emotionTotals) {
+//                    double emotionSum = [emotionTotals[emotion] doubleValue];
+//                    double totalPeople = [faceAnnotations count];
+//                    double likelihoodPercent = emotionSum / totalPeople;
+//                    NSString *percentString = [[NSString alloc] initWithFormat:@"%2.0f%%",(likelihoodPercent*100)];
+//                    NSString *emotionPercentString = [NSString stringWithFormat:@"%@%@%@%@", emotion, @": ", percentString, @"\r\n"];
+//                    self.faceResults.text = [self.faceResults.text stringByAppendingString:emotionPercentString];
+//                    
+//                }
+                facialAnalysisString = [facialAnalysisString stringByAppendingString:@"\nSwipe left to open Gallery"];
+                if (_imageView)
+                [[ImageModel sharedInstance].faces addObject:_image];
+                
+            } else {
+                facialAnalysisString = @"\n\nNo faces found. \nSwipe left to open Gallery";
+            }
+             combinedString = [NSString stringWithFormat:@"%@%@%@",textAnalysis,labelResultsText,facialAnalysisString];
+            self.combineResult.text = combinedString;
+            [synthesizerQueue readNext:combinedString withLanguage:@"en_US" andRate:0.4 andClearQueue:NO];
+            
+
         }
+       
     });
     
 }
@@ -261,6 +289,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    synthesizerQueue = [[QHSpeechSynthesizerQueue alloc] init];
+    synthesizerQueue.duckOthers = YES;
+    synthesizerQueue.preDelay = 1.0;
+    synthesizerQueue.postDelay = 1.0;
+
     //self.faceResults.hidden = true;
     //self.labelResults.hidden = true;
     self.spinner.hidesWhenStopped = true;
