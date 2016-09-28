@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1B1684421C3B164200220B6E"
-               BuildableName = "imagepicker-objc.app"
+               BuildableName = "iVision.app"
                BlueprintName = "imagepicker-objc"
                ReferencedContainer = "container:imagepicker-objc.xcodeproj">
             </BuildableReference>
@@ -53,7 +53,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1B1684421C3B164200220B6E"
-            BuildableName = "imagepicker-objc.app"
+            BuildableName = "iVision.app"
             BlueprintName = "imagepicker-objc"
             ReferencedContainer = "container:imagepicker-objc.xcodeproj">
          </BuildableReference>
@@ -76,7 +76,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1B1684421C3B164200220B6E"
-            BuildableName = "imagepicker-objc.app"
+            BuildableName = "iVision.app"
             BlueprintName = "imagepicker-objc"
             ReferencedContainer = "container:imagepicker-objc.xcodeproj">
          </BuildableReference>
@@ -95,7 +95,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1B1684421C3B164200220B6E"
-            BuildableName = "imagepicker-objc.app"
+            BuildableName = "iVision.app"
             BlueprintName = "imagepicker-objc"
             ReferencedContainer = "container:imagepicker-objc.xcodeproj">
          </BuildableReference>
