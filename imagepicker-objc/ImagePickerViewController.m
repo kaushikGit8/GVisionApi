@@ -302,4 +302,8 @@
         [self createRequest:_binaryImageData];
 }
 
+-(void)viewDidDisappear:(BOOL)animated{
+    [synthesizerQueue stop];
+}
+
 @end
