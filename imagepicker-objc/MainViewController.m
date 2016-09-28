@@ -33,13 +33,22 @@
     synthesizerQueue.duckOthers = YES;
     synthesizerQueue.preDelay = 1.0;
     synthesizerQueue.postDelay = 1.0;
-    [synthesizerQueue readImmediately:_tapToTakeImage.text withLanguage:@"en_US" andRate:0.5 andClearQueue:NO];
-    [synthesizerQueue readNext:_swipeToGallery.text withLanguage:@"en_US" andRate:0.5 andClearQueue:YES];
+   
     
     // Setting Camera properties
     [TGCamera setOption:kTGCameraOptionHiddenFilterButton value:[NSNumber numberWithBool:YES]];
     [TGCamera setOption:kTGCameraOptionSaveImageToAlbum value:[NSNumber numberWithBool:YES]];
     [TGCamera setOption:kTGCameraOptionHiddenToggleButton value:[NSNumber numberWithBool:YES]];
+}
+
+
+-(void)viewWillAppear:(BOOL)animated{
+    [synthesizerQueue readImmediately:_tapToTakeImage.text withLanguage:@"en_US" andRate:0.5 andClearQueue:NO];
+    [synthesizerQueue readNext:_swipeToGallery.text withLanguage:@"en_US" andRate:0.5 andClearQueue:YES];
+}
+
+-(void)viewDidDisappear:(BOOL)animated{
+    [synthesizerQueue stop];
 }
 
 - (IBAction)swipeGesture:(UISwipeGestureRecognizer *)sender {
