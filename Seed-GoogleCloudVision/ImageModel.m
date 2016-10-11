@@ -1,8 +1,8 @@
 //
 //  ImageModel.m
-//  imagepicker-objc
+//  Seed-GoogleCloudVision
 //
-//  Created by Kaushik Jadhav on 21/09/16.
+//  Created by Krunal Soni on 21/09/16.
 //  Copyright © 2016 Sara Robinson. All rights reserved.
 //
 

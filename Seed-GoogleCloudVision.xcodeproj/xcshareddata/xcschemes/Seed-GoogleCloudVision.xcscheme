@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1B1684421C3B164200220B6E"
                BuildableName = "iVision.app"
-               BlueprintName = "imagepicker-objc"
-               ReferencedContainer = "container:imagepicker-objc.xcodeproj">
+               BlueprintName = "Seed-GoogleCloudVision"
+               ReferencedContainer = "container:Seed-GoogleCloudVision.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1B16845B1C3B164200220B6E"
-               BuildableName = "imagepicker-objcTests.xctest"
-               BlueprintName = "imagepicker-objcTests"
-               ReferencedContainer = "container:imagepicker-objc.xcodeproj">
+               BuildableName = "Seed-GoogleCloudVisionTests.xctest"
+               BlueprintName = "Seed-GoogleCloudVisionTests"
+               ReferencedContainer = "container:Seed-GoogleCloudVision.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1B1684661C3B164200220B6E"
-               BuildableName = "imagepicker-objcUITests.xctest"
-               BlueprintName = "imagepicker-objcUITests"
-               ReferencedContainer = "container:imagepicker-objc.xcodeproj">
+               BuildableName = "Seed-GoogleCloudVisionUITests.xctest"
+               BlueprintName = "Seed-GoogleCloudVisionUITests"
+               ReferencedContainer = "container:Seed-GoogleCloudVision.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -54,8 +54,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1B1684421C3B164200220B6E"
             BuildableName = "iVision.app"
-            BlueprintName = "imagepicker-objc"
-            ReferencedContainer = "container:imagepicker-objc.xcodeproj">
+            BlueprintName = "Seed-GoogleCloudVision"
+            ReferencedContainer = "container:Seed-GoogleCloudVision.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -77,8 +77,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1B1684421C3B164200220B6E"
             BuildableName = "iVision.app"
-            BlueprintName = "imagepicker-objc"
-            ReferencedContainer = "container:imagepicker-objc.xcodeproj">
+            BlueprintName = "Seed-GoogleCloudVision"
+            ReferencedContainer = "container:Seed-GoogleCloudVision.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -96,8 +96,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1B1684421C3B164200220B6E"
             BuildableName = "iVision.app"
-            BlueprintName = "imagepicker-objc"
-            ReferencedContainer = "container:imagepicker-objc.xcodeproj">
+            BlueprintName = "Seed-GoogleCloudVision"
+            ReferencedContainer = "container:Seed-GoogleCloudVision.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
