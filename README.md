@@ -1,19 +1,15 @@
-# Cloud Vision Objective-C Sample
+# Version
+1.0.0
 
-This app demonstrates how to use the [Cloud Vision API](https://cloud.google.com/vision/) to run label and face detection on an image.
+# Synopsis : Cloud Vision Objective-C Seed Project
+
+This app uses [Cloud Vision API](https://cloud.google.com/vision/) to provide text, entity and face detection on image captured from camera or image selected from gallery.
+The aimed use case is to develop an app for blind and visually impaired users to visualize the objects or obstacles around them. The app uses text to speech in combination with the Google Cloud vision api to provide hassle free user experience.  
 
 ## Prerequisites
-- An API key for the Cloud Vision API (See
-  [the docs][getting-started] to learn more)
+- An API key for the Cloud Vision API
 - An OSX machine or emulator
-- [Xcode 7][xcode]
-
-## Quickstart
-- Clone this repo and `cd` into the `Objective-C` directory.
-- In `ImagePickerViewController.m`, replace `YOUR_API_KEY` with the API key obtained above.
-- Open the project by running `open imagepicker-objc.xcodeproj` in the `Objective-C` directory.
-- Build and run the app.
-
+- [Xcode 8][xcode]
 
 ## Running the app
 
@@ -26,37 +22,21 @@ This app demonstrates how to use the [Cloud Vision API](https://cloud.google.com
   - [Enable billing][billing] and the [Vision API][enable-vision].
   - Create an [API key][api-key], and save this for later.
 
-- Clone this `cloud-vision` repository on GitHub. If you have [`git`][git] installed, you can do this by executing the following command:
+# Future enhancements
+- Add Alchemy API to build context of the text detected
+- Auto-tagging of the images captures for easy search
+- Sirikit integration to search images of particular "tags" and share with Others
 
-        $ git clone https://github.com/GoogleCloudPlatform/cloud-vision.git
-
-    This will download the repository of samples into the directory
-    `cloud-vision`.
-
-    Otherwise, GitHub offers an [auto-generated zip file][vision-zip] of the
-    `master` branch, which you can download and extract. Either method will include the desired directory at
-    `cloud-vision/ios/Objective-C`.
-
-- `cd` into the `cloud-vision/ios/Objective-C` directory you just cloned, and run the command `open imagepicker-objc.xcodeproj` to open this project in Xcode.
-
-- In Xcode's Project Navigator, open the `ImagePickerViewController.m` file within the `imagepicker-objc` directory.
-
-- Find the line where the `API_KEY` is set. Replace the string value with the API key obtained from the Cloud console above. This key is the credential used in the `createRequest` method to authenticate all requests to the Vision API. Calls to the API are thus associated with the project you created above, for access and billing purposes.
-
-- You are now ready to build and run the project. In Xcode you can do this by clicking the 'Play' button in the top left. This will launch the app on the simulator or on the device you've selected.
-
-- Click the `Choose an image to analyze` button. This calls the `loadImageButtonTapped` action to load the device's photo library.
-
-- Select an image from your device. If you're using the simulator, you can drag and drop an image from your computer into the simulator using Finder.
-	- This executes the `imagePickerController`, which saves the selected image and calls the `base64EncodeImage` function. This function base64 encodes the image and resizes it if it's too large to send to the API.
-	- The `createRequest` method creates and executes a label and face detection request to the Cloud Vision API.
-	- When the API responds, the `analyzeResults` function is called. This method constructs a string of the labels returned from the API. If there are faces detected in the photo, it analyzes the emotions detected. It then displays the label and face results in the UI by populating the `labelResults` and `faceResults` `UITextView` with the data returned from the API.
+# Relevant Hyperlinks
+- [QHSpeechSynthesizerQueue][QHSpeechSynthesizerQueue]
+- [TGCameraViewController][TGCameraViewController]
 
 [vision-zip]: https://github.com/GoogleCloudPlatform/cloud-vision/archive/master.zip
 [getting-started]: https://cloud.google.com/vision/docs/getting-started
 [cloud-console]: https://console.cloud.google.com
-[git]: https://git-scm.com/
 [xcode]: https://developer.apple.com/xcode/
 [billing]: https://console.cloud.google.com/billing?project=_
 [enable-vision]: https://console.cloud.google.com/apis/api/vision.googleapis.com/overview?project=_
 [api-key]: https://console.cloud.google.com/apis/credentials?project=_
+[QHSpeechSynthesizerQueue] : https://github.com/quentinhayot/QHSpeechSynthesizerQueue
+[TGCameraViewController] : https://github.com/tdginternet/TGCameraViewController
