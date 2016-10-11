@@ -3,7 +3,7 @@
 //  Seed-GoogleCloudVision
 //
 //  Created by Krunal Soni on 27/09/16.
-//  Copyright © 2016 Sara Robinson. All rights reserved.
+//  Copyright © 2016 Cognizant. All rights reserved.
 //
 
 #import "MainViewController.h"
