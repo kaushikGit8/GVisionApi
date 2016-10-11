@@ -206,34 +206,7 @@
                 NSInteger numPeopleDetected = [faceAnnotations count];
                 NSString *peopleStr = [NSString stringWithFormat:@"%lu", (unsigned long)numPeopleDetected];
                 NSString *faceStr1 = @"\n\nPeople detected: ";
-//                NSString *faceStr2 = @"\n\nEmotions detected:\n";
                 facialAnalysisString = [NSString stringWithFormat:@"%@%@", faceStr1, peopleStr];
-                
-//                NSArray *emotions = @[@"joy", @"sorrow", @"surprise", @"anger"];
-//                NSMutableDictionary *emotionTotals = [NSMutableDictionary dictionaryWithObjects:@[@0.0,@0.0,@0.0,@0.0]forKeys:@[@"sorrow",@"joy",@"surprise",@"anger"]];
-//                NSDictionary *emotionLikelihoods = @{@"VERY_LIKELY": @0.9, @"LIKELY": @0.75, @"POSSIBLE": @0.5, @"UNLIKELY": @0.25, @"VERY_UNLIKELY": @0.0};
-//                
-//                // Sum all detected emotions
-//                for (NSDictionary *personData in faceAnnotations) {
-//                    for (NSString *emotion in emotions) {
-//                        NSString *lookup = [emotion stringByAppendingString:@"Likelihood"];
-//                        NSString *result = [personData objectForKey:lookup];
-//                        double newValue = [emotionLikelihoods[result] doubleValue] + [emotionTotals[emotion] doubleValue];
-//                        NSNumber *tempNumber = [[NSNumber alloc] initWithDouble:newValue];
-//                        [emotionTotals setValue:tempNumber forKey:emotion];
-//                    }
-//                }
-//                
-//                // Get emotion likelihood as a % and display it in the UI
-//                for (NSString *emotion in emotionTotals) {
-//                    double emotionSum = [emotionTotals[emotion] doubleValue];
-//                    double totalPeople = [faceAnnotations count];
-//                    double likelihoodPercent = emotionSum / totalPeople;
-//                    NSString *percentString = [[NSString alloc] initWithFormat:@"%2.0f%%",(likelihoodPercent*100)];
-//                    NSString *emotionPercentString = [NSString stringWithFormat:@"%@%@%@%@", emotion, @": ", percentString, @"\r\n"];
-//                    self.faceResults.text = [self.faceResults.text stringByAppendingString:emotionPercentString];
-//                    
-//                }
                 facialAnalysisString = [facialAnalysisString stringByAppendingString:@"\nSwipe left to open Gallery"];
                 if (_imageView)
                 [[ImageModel sharedInstance].faces addObject:_image];
@@ -293,9 +266,6 @@
     synthesizerQueue.duckOthers = YES;
     synthesizerQueue.preDelay = 1.0;
     synthesizerQueue.postDelay = 1.0;
-
-    //self.faceResults.hidden = true;
-    //self.labelResults.hidden = true;
     self.spinner.hidesWhenStopped = true;
     
     if (_binaryImageData)

@@ -63,18 +63,14 @@ static NSString * const reuseIdentifier = @"cell";
     
     // Configure the cell
     if (indexPath.section == 1) {
-    
-        cell.imageView.image =  (UIImage*)[[ImageModel sharedInstance].faces objectAtIndex:indexPath.row];
-        //[cell.contentView addSubview:[[UIImageView alloc] initWithImage:[[ImageModel sharedInstance].faces objectAtIndex:indexPath.row]]];
+       cell.imageView.image =  (UIImage*)[[ImageModel sharedInstance].faces objectAtIndex:indexPath.row];
        cell.contentView.backgroundColor = [UIColor clearColor];
     }else  if (indexPath.section == 2) {
-        cell.imageView.image =  (UIImage*)[[ImageModel sharedInstance].nature objectAtIndex:indexPath.row];
-         //[cell.contentView addSubview:[[UIImageView alloc] initWithImage:[[ImageModel sharedInstance].nature objectAtIndex:indexPath.row]]];
+       cell.imageView.image =  (UIImage*)[[ImageModel sharedInstance].nature objectAtIndex:indexPath.row];
        cell.contentView.backgroundColor = [UIColor clearColor];
     }
     else  if (indexPath.section == 3) {
         cell.imageView.image =  (UIImage*)[[ImageModel sharedInstance].others objectAtIndex:indexPath.row];
-        //[cell.contentView addSubview:[[UIImageView alloc] initWithImage:[[ImageModel sharedInstance].nature objectAtIndex:indexPath.row]]];
         cell.contentView.backgroundColor = [UIColor clearColor];
     }
     
@@ -102,17 +98,6 @@ static NSString * const reuseIdentifier = @"cell";
         headerView.backgroundColor = [UIColor clearColor];
         reusableview = headerView;
     }
-    
-//    if (kind == UICollectionElementKindSectionFooter) {
-//        UICollectionReusableView *footerview = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"FooterView" forIndexPath:indexPath];
-//        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 50)];
-//        label.text = @"Footer";
-//        label.textColor = [UIColor redColor];
-//        [footerview addSubview:label];
-//        footerview.backgroundColor = [UIColor yellowColor];
-//        reusableview = footerview;
-//    }
-    
     return reusableview;
 }
 

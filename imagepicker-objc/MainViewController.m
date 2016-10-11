@@ -130,11 +130,10 @@
 
 - (void)cameraDidTakePhoto:(UIImage *)image
 {
-    UIImage *pickedImageData = image;//info[UIImagePickerControllerOriginalImage];
+    UIImage *pickedImageData = image;
     pickedImage = pickedImageData;
     // Base64 encode the image and create the request
     binaryImageData = [self base64EncodeImage:pickedImage];
-    //[imagePicker dismissViewControllerAnimated:true completion:NULL];
     [self dismissViewControllerAnimated:YES completion:nil];
     [self performSegueWithIdentifier:@"capture" sender:self];
 
@@ -142,7 +141,6 @@
 
 - (void)cameraDidSelectAlbumPhoto:(UIImage *)image
 {
-    //_photoView.image = image;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

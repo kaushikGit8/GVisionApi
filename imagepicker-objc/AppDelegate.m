@@ -26,20 +26,7 @@
     // Override point for customization after application launch.
     
     [ImageModel sharedInstance];
-    /*NSString *__block make = @"Honda";
-    NSString *(^getFull)(NSString*)=^(NSString *model){
-        make = @"Wa";
-        return [make stringByAppendingFormat:@"%@",model];
-    };
-    NSLog(@"%@",getFull(@"Accord"));
-    make = @"Po";
-    NSLog(@"%@",getFull(@"911 Turbo"));
-    
-    NSMutableSet *se= [NSMutableSet set];
-    [se addObject:make];
-    [se addObject:make];
-    NSCountedSet * con = [NSCountedSet set];
-    [NSString copy];*/
+
     return YES;
 }
 
